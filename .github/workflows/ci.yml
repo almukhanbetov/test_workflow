@@ -1,7 +1,8 @@
 name: Build and Push Docker Images
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
+    workflow_dispatch:  # <-- вот эта строчка добавит кнопку запуска вручную
 jobs:
   build:
     runs-on: ubuntu-latest
