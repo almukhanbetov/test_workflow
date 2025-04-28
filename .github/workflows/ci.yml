@@ -27,11 +27,11 @@ jobs:
       with:
         context: ./backend
         push: true
-        tags: almukhanbetov/backend:latest
+        tags: almuko/backend:latest
 
     - name: Build and Push Frontend Image
       uses: docker/build-push-action@v5
       with:
         context: ./frontend
         push: true
-        tags: almukhanbetov/frontend:latest
+        tags: almuko/frontend:latest
