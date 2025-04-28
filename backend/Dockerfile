@@ -1,12 +1,29 @@
-FROM golang:1.22.5 as builder
+# Используем свежую версию Go
+FROM golang:1.23 as builder
+
+# Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
+
+# Копируем все файлы проекта в контейнер
 COPY . .
+
+# Скачиваем все зависимости
 RUN go mod tidy
+
+# Собираем приложение
 RUN go build -o server .
 
+# Финальный маленький контейнер
 FROM alpine:latest
 
+# Устанавливаем рабочую директорию
 WORKDIR /root/
-COPY --from=builder /app/server  .
+
+# Копируем бинарник из стадии сборки
+COPY --from=builder /app/server .
+
+# Открываем порт (если нужно)
 EXPOSE 8080
+
+# Команда по умолчанию для запуска приложения
 CMD ["./server"]
