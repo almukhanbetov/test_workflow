@@ -27,6 +27,7 @@ jobs:
       with:
         context: ./backend
         push: true
+        no-cache: true
         tags: almuko/backend:latest
 
     - name: Build and Push Frontend Image
@@ -34,4 +35,5 @@ jobs:
       with:
         context: ./frontend
         push: true
+        no-cache: true
         tags: almuko/frontend:latest
